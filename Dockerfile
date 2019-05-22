@@ -1,4 +1,5 @@
-FROM govukpay/alpine:3.9
+# govukpay/alpine:3.9
+FROM govukpay/alpine@sha256:7c98b51d3496a69d6f367a5c707287d49a202e304f964e17bd75eaacc960c7dc
 
 USER root
 
