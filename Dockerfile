@@ -5,7 +5,7 @@ RUN addgroup -g 1000 user && \
 
 USER root
 
-RUN ["apk", "add", "--no-cache", "squid=4.8-r0"]
+RUN ["apk", "add", "--no-cache", "squid=4.8-r0", "tini"]
 RUN echo '' > /etc/squid/squid.conf
 
 RUN mkdir /squid && chown -R user /squid && chown -R user /etc/squid/squid.conf
@@ -14,4 +14,4 @@ EXPOSE 8080
 
 USER user
 
-ENTRYPOINT ash -c 'echo "$SQUID_CONFIG" | base64 -d > /etc/squid/squid.conf && squid -N'
+ENTRYPOINT tini -- ash -c 'echo "$SQUID_CONFIG" | base64 -d > /etc/squid/squid.conf && exec squid -N'
