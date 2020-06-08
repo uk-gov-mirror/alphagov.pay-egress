@@ -1,11 +1,12 @@
-FROM alpine@sha256:6a92cd1fcdc8d8cdec60f33dda4db2cb1fcdcacf3410a8e05b3741f44a9b5998
+# alpine 3.12.0
+FROM alpine@sha256:a15790640a6690aa1730c38cf0a440e2aa44aaca9b0e8931a9f2b0d7cc90fd65
 
 RUN addgroup -g 1000 user && \
     adduser  -u 1000 -G user -D user
 
 USER root
 
-RUN ["apk", "add", "--no-cache", "squid=4.8-r1", "tini"]
+RUN ["apk", "add", "--no-cache", "squid=4.11-r0", "tini"]
 RUN echo '' > /etc/squid/squid.conf
 
 RUN mkdir /squid && chown -R user /squid && chown -R user /etc/squid/squid.conf
