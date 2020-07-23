@@ -6,7 +6,7 @@ RUN addgroup -g 1000 user && \
 
 USER root
 
-RUN ["apk", "add", "--no-cache", "squid=4.11-r0", "tini"]
+RUN ["apk", "add", "--no-cache", "squid=4.12-r0", "tini"]
 RUN echo '' > /etc/squid/squid.conf
 
 RUN mkdir /squid && chown -R user /squid && chown -R user /etc/squid/squid.conf
