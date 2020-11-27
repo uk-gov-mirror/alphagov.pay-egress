@@ -6,8 +6,7 @@ RUN addgroup -g 1000 user && \
 
 USER root
 
-RUN echo "@edge http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
-RUN ["apk", "add", "--no-cache", "squid@edge", "tini"]
+RUN ["apk", "add", "--no-cache", "squid=4.13-r0", "tini"]
 RUN echo '' > /etc/squid/squid.conf
 
 RUN mkdir /squid && chown -R user /squid && chown -R user /etc/squid/squid.conf
