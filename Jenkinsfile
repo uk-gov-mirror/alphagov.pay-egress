@@ -50,6 +50,10 @@ pipeline {
         deployEcs("egress")
       }
     }
+    stage('Smoke Tests') {
+      when { branch 'master' }
+      steps { runCardSmokeTest() }
+    }
     stage('Complete') {
       failFast true
       parallel {
